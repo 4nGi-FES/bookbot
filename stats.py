@@ -1,33 +1,26 @@
-def get_word_count(text):
-    word_count = len(text.split())
-    return word_count
+def get_num_words(text):
+    words = text.split()
+    return len(words)
 
-def get_letter_frequency(text):
-    text = text.lower()
-    char_list = list(text)
-    char_dict = {}
-    for character in char_list:
-        if character in char_dict:
-            char_dict[character] += 1
+
+def get_chars_dict(text):
+    chars = {}
+    for c in text:
+        lowered = c.lower()
+        if lowered in chars:
+            chars[lowered] += 1
         else:
-            char_dict[character] = 1
-    return char_dict
+            chars[lowered] = 1
+    return chars
 
-def sort_on(items):
-    return items["num"]
 
-def sorted_characters(num_char):
-    char_dict = num_char
-    char_list = list(char_dict)
-    alpha_list = []
-    for char in char_list:
-        if char.isalpha() == True:
-            alpha_list.append(char)
-    data_list = []
-    for char in alpha_list:
-        val = char_dict[char]
-        data_pair = {"char": char, "num": val}
-        data_list.append(data_pair)
-    data_list.sort(reverse=True, key=sort_on)
-    return data_list
+def sort_on(d):
+    return d["num"]
 
+
+def chars_dict_to_sorted_list(num_chars_dict):
+    sorted_list = []
+    for ch in num_chars_dict:
+        sorted_list.append({"char": ch, "num": num_chars_dict[ch]})
+    sorted_list.sort(reverse=True, key=sort_on)
+    return sorted_list
